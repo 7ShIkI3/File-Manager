@@ -35,8 +35,6 @@ def destination_trie():
         save_list.append(trie_desktop)
         trie_document = input("Fichier document à trier : ").replace("\\", "/")
         save_list.append(trie_document)
-        trie_video = input("Fichier document à trier : ").replace("\\", "/")
-        save_list.append(trie_video)
 
         destination_img = str(input("Destination des fichiers img : ")).replace("\\", "/")
         save_list.append(destination_img)
@@ -46,9 +44,7 @@ def destination_trie():
         save_list.append(destination_python)
         destination_exe = str(input("Destination des fichiers exe : ")).replace("\\", "/")
         save_list.append(destination_exe)
-        destination_exe = str(input("Destination des fichiers exe : ")).replace("\\", "/")
-        save_list.append(destination_exe)
-        destination_video = str(input("Destination des fichiers exe : ")).replace("\\", "/")
+        destination_video = str(input("Destination des fichiers video : ")).replace("\\", "/")
         save_list.append(destination_video)
 
         fichier = open("save.txt", "w", encoding="utf-8")
@@ -95,6 +91,9 @@ def main():
     trie_fichiers(save)
     affichage()
     print("We have cleaned your pc ;)")
-    input()
+    new = str(input("> [A] For restart : "))
+    if new == "A":
+        print("\033c")
+        main()
 
 lancer()
