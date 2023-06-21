@@ -46,6 +46,8 @@ def destination_trie():
         save_list.append(destination_exe)
         destination_video = str(input("Destination des fichiers video : ")).replace("\\", "/")
         save_list.append(destination_video)
+        destination_musique = str(input("Destination des fichiers audio : ")).replace("\\", "/")
+        save_list.append(destination_musique)
 
         fichier = open("save.txt", "w", encoding="utf-8")
         for path in save_list:
@@ -57,7 +59,7 @@ def destination_trie():
 
 def trie_fichiers(position: list):
     trie = position[:3]
-    destination = position[3:9]
+    destination = position[3:10]
 
     for folder in trie:
         for file in glob.glob(os.path.join(folder, "*")):
@@ -68,12 +70,14 @@ def trie_fichiers(position: list):
                 destination_path = os.path.join(destination[2], os.path.basename(file))
             elif file.endswith((".png", ".jpg", ".JPG", ".gif", ".jfif", ".raw")):
                 destination_path = os.path.join(destination[0], os.path.basename(file))
-            elif file.endswith((".txt", ".docx", ".doc", ".odt", ".odp")):
+            elif file.endswith((".txt", ".docx", ".doc", ".odt", ".odp", ".pdf")):
                 destination_path = os.path.join(destination[1], os.path.basename(file))
             elif file.endswith(".exe"):
                 destination_path = os.path.join(destination[3], os.path.basename(file))
             elif file.endswith((".mp4", ".mkv")):
                 destination_path = os.path.join(destination[4], os.path.basename(file))
+            elif file.endswith((".mp3")):
+                destination_path = os.path.join(destination[5], os.path.basename(file))
             
             # Vérifier si une destination valide a été trouvée
             if destination_path:
